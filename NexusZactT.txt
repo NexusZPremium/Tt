@@ -807,11 +807,11 @@ local sizeSlider =
     {
         Title = "Hitbox Size",
         Min = 2,
-        Max = 13,
-        Default = 2,
+        Max = 20,
+        Default = 10,
         Rounding = 1,
         Callback = function(value)
-            hitboxSize = Vector3.new(value, value, 1)
+            hitboxSize = Vector3.new(value, value, value)
             if isHitboxExtended then
                 applyHitboxModifications()
             end
@@ -1013,7 +1013,7 @@ local colorSlider =
 
                 local speedSection = Tabs.Tab4:AddSection("WalkSpeed")
 
-                local speedOptions = {20, 30, 40, 50, 60}
+                local speedOptions = {20, 30, 35, 40, 45, 50, 60}
                 local selectedSpeed = 30
                 local speedEnabled = false
 
@@ -1124,7 +1124,7 @@ local colorSlider =
                 local vars = {
                     invisiblefly = false,
                     playerClone = nil,
-                    flySpeed = 8,
+                    flySpeed = 6,
                     wasInvisibleFlyEnabled = false
                 }
 
@@ -1172,7 +1172,7 @@ local colorSlider =
                                     vars.playerClone:FindFirstChild("Humanoid") or localPlayer.Character.Humanoid
 
                                 hum:ChangeState("Climbing")
-                                localPlayer.Character:PivotTo(vars.playerClone:GetPivot() + Vector3.new(0, 1500, 0))
+                                localPlayer.Character:PivotTo(vars.playerClone:GetPivot() + Vector3.new(0, 700, 0))
 
                                 root.Velocity = Vector3.zero
 
@@ -1240,7 +1240,7 @@ local colorSlider =
                                 local newCFrame =
                                     CFrame.new(
                                     currentCFrame.Position.X,
-                                    currentCFrame.Position.Y - 1500,
+                                    currentCFrame.Position.Y - 700,
                                     currentCFrame.Position.Z
                                 )
                                 localPlayer.Character:PivotTo(newCFrame)
@@ -1567,8 +1567,8 @@ local colorSlider =
                                         local extraY = 0
 
                                         if humanoid.Parent:GetAttribute("inTerrain") then
-                                            if boatCFrame.Position.Y < originalY + 3 then
-                                                extraY = 3
+                                            if boatCFrame.Position.Y < originalY + 4 then
+                                                extraY = 4
                                             else
                                                 extraY = 0
                                             end
@@ -1578,7 +1578,7 @@ local colorSlider =
                                                 boatCFrame - Vector3.new(0, boatCFrame.Position.Y - originalY, 0)
                                         end
 
-                                        boatCFrame = boatCFrame + Vector3.new(0, extraY, 0) + humanoid.MoveDirection * 3
+                                        boatCFrame = boatCFrame + Vector3.new(0, extraY, 0) + humanoid.MoveDirection * 2
                                     end
                                 )
                             end
